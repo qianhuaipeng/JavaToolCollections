@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	default-lazy-init="true">
+
+	<!-- 设置启动的定时bean -->
+	<bean name="quartzScheduler" lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="toAcs"/>
+			</list>
+		</property>
+		<property name="configLocation" value="classpath:quartz/quartz.properties" />
+	</bean>
+	
+	<!-- 每月1日 0 点创建  -->
+	<bean id="toAcs" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="timerService"></property>
+				<property name="targetMethod" value="toAcs"></property>
+				<property name="concurrent" value="false"></property>
+			</bean>
+		</property>
+		<!-- 每天九点点执行 -->
+		<property name="cronExpression" value="0 0 9 * * ? *"></property>
+
+	</bean>
+
+
+
+
+</beans>

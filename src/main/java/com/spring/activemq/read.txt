@@ -1,0 +1,3 @@
+1、安装apache-activemq安装包，下载地址http://www.apache.org/dyn/closer.cgi?path=/activemq/apache-activemq/5.8.0/apache-activemq-5.8.0-bin.zip
+2、开启apache-activemq服务，windows在bin下面打开exe文件
+3、订阅消息类TopicReceive.java

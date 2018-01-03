@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance  http://www.springmodules.org/schema/cache/springmodules-cache.xsd http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd" xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd">
+    <!-- 
+        user.home      – 用户主目录
+        user.dir– 用户当前工作目录,java.io.tmpdir – 默认临时文件路径
+     -->
+    <diskStore path="java.io.tmpdir/tmp_ehcache"/>
+    
+   <!--EHCache分布式缓存集群环境配置-->  
+    <!--rmi手动配置  --> 
+    <cacheManagerPeerProviderFactory 
+    class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory" 
+    properties="hostName=localhost,
+    port=4567,
+    socketTimeoutMillis=2000,
+    peerDiscovery=manual,
+    rmiUrls=//127.0.0.1:40001/app_cache"/>
+   
+  
+    
+    <!-- 集群cache 容量200000，时间10分钟 -->
+    <cache name="app_cache"
+	    maxElementsInMemory="200000"
+	    eternal="false" 
+	    timeToIdleSeconds="1800"
+        timeToLiveSeconds="0" 
+        overflowToDisk="false"
+        memoryStoreEvictionPolicy="LRU"
+        >
+	<cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" 
+        properties="replicateAsynchronously=true, 
+        replicatePuts=true, 
+        replicateUpdates=true,
+            replicateUpdatesViaCopy=false, 
+        replicateRemovals=true "/>
+	</cache>
+     
+             
+    <!-- defaultCache：默认缓存策略，当ehcache找不到定义的缓存时，则使用这个缓存策略。只能定义一个 
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="0"
+            overflowToDisk="true"
+            diskSpoolBufferSizeMB="30"
+            maxElementsOnDisk="100000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+        <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+    </defaultCache>
+     -->
+    <defaultCache maxElementsInMemory="30000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="0"
+        overflowToDisk="true" diskSpoolBufferSizeMB="30" maxElementsOnDisk="100000" diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU">
+    </defaultCache>
+    
+    <!-- cache：自定缓存策略，为自定义的缓存策略 
+    <cache name="user"
+           maxElementsInMemory="1000"
+           eternal="false"
+           timeToIdleSeconds="100000"
+           timeToLiveSeconds="0"
+           overflowToDisk="false">
+        <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+    </cache>
+    -->
+    <cache name="CacheHelper" maxElementsInMemory="30000" eternal="false" timeToIdleSeconds="100000"
+        timeToLiveSeconds="0" overflowToDisk="false">
+    </cache>
+    
+    <!-- cache：自定xcache，用于spring方法级缓存 -->
+    <cache name="dcache"
+        maxElementsInMemory="50000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="false"   
+        memoryStoreEvictionPolicy="LRU"
+        />
+</ehcache>
+
