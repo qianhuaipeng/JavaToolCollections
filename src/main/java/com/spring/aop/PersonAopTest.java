@@ -1,4 +1,4 @@
-package com.spring.aop.test;
+package com.spring.aop;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

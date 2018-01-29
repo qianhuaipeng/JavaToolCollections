@@ -1,4 +1,4 @@
-package test.com.jvm.oom;
+package com.jvm.oom;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

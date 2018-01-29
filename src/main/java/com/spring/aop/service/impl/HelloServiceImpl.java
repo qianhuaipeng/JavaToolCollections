@@ -1,13 +1,17 @@
 package com.spring.aop.service.impl;
 
 import com.spring.aop.service.IHelloService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HelloServiceImpl implements IHelloService{
+
 	private String Hello;
     private String ChinaHello;
+
 	@Override
 	public void sayHello() {
-		System.out.println(Hello);
+		System.out.println("Hello");
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package test.com.jvm.oom;
+package com.jvm.oom;
 
 /**
  * @author alan.peng
