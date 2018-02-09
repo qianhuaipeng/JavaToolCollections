@@ -58,7 +58,7 @@ public class HelloAspect {
     }
      
     @AfterReturning("helloChinapoint()")
-    public void afterhelloChina() {
+    public void afterhelloChina(ProceedingJoinPoint joinPoint) {
         System.out.println("函数sayChinaHello()执行结束......");
     }
     
