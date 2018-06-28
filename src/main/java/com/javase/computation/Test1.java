@@ -1,10 +1,12 @@
 package com.javase.computation;
 
+import org.junit.Test;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Test {
+public class Test1 {
 	
 	public static void main(String[] args) {
 		System.out.println(10 & 11);
@@ -17,5 +19,11 @@ public class Test {
 		HashMap hashMap = new HashMap();
 		Map map = Collections.synchronizedMap(hashMap);
 		
+	}
+
+
+	@Test
+	public void test(){
+
 	}
 }

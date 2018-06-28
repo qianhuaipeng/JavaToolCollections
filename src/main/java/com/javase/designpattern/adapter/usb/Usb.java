@@ -1,4 +1,4 @@
-package com.javase.designpattern.adapter;
+package com.javase.designpattern.adapter.usb;
 
 /**
  * author: alan.peng

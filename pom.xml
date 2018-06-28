@@ -328,6 +328,12 @@
 			<version>2.9.1</version>
 		</dependency>
 		<!-- ehcache 缓存 end-->
+		<!-- https://mvnrepository.com/artifact/com.googlecode.princeton-java-introduction/stdlib -->
+		<dependency>
+			<groupId>com.googlecode.princeton-java-introduction</groupId>
+			<artifactId>stdlib</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -339,7 +345,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
+			<!--<scope>test</scope>-->
 		</dependency>
         <!-- junit end -->
 
