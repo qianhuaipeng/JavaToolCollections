@@ -2,3 +2,5 @@ JavaToolCollections.iml
 .idea/
 src/main/webapp/WEB-INF/classes/
 target/
+.vscode/launch.json
+.vscode/settings.json
